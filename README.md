@@ -94,18 +94,18 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     [new line]
     
 ## func (variable)
-    func GREETINGS
-    write hello
-    [new line]
+    func    GREETINGS
+    write   hello
+    [new    line]
     
     NUM1    0
     NUM2    0
     
-    func SUM_AND_PRINT
+    func    SUM_AND_PRINT
     SUM     NUM1 plus NUM2
     write   Total is SUM
     
-    func RESET
+    func    RESET
     NUM1    0
     NUM2    0
     
@@ -120,6 +120,7 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     call    SUM_AND_PRINT
     print   resetting all values
     call    RESET
+    [new line]
 
 ## Design goals
 - No non alfanumeric chars will be used. Characters like & ( ) – [ { } ] : ', ? / * ^> are considered as string.
