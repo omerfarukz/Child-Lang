@@ -1,8 +1,8 @@
-; code writes numbers from 10 to 1
+; code prints numbers from 10 to 1
 COUNTER 10
 while   COUNTER greater 1
-write   COUNTER
+print   COUNTER
 ; set new value of counter
 COUNTER COUNTER minus 1
 
-write end of the story
+print end of the story

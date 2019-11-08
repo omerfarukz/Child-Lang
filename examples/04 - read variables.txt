@@ -1,5 +1,5 @@
-write   please type your name
+print   please type your name
 read    NAME
-write   please type your age
+print   please type your age
 read    AGE
-write   your name is NAME and you are AGE years old
+print   your name is NAME and you are AGE years old

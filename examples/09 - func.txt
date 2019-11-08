@@ -1,6 +1,6 @@
 func    PRINT
-write   hello world
-write   i am a function.
-write   byte
+print   hello world
+print   i am a function.
+print   byte
 
 call    PRINT

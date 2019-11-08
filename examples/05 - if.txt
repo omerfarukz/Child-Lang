@@ -1,7 +1,7 @@
-write   please type your age
+print   please type your age
 read    AGE
-write   --- processing ---
+print   --- processing ---
 if      AGE less 9
-write   you are using a right language for introduction to programming
+print   you are using a right language for introduction to programming
 
-write   thank you
+print   thank you
