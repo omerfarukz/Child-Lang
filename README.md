@@ -1,13 +1,13 @@
 # Child-Lang
 New programming language designed for children who can read and write
 
-    write    hello world
+    print    hello world
 
 ##Other example:
 
-    write   please type your name
+    print   please type your name
     read    NAME
-    write   hello NAME
-    write   how are you?
+    print   hello NAME
+    print   how are you?
     read    ANSWER
-    write   bye bye
+    print   bye bye
