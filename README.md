@@ -14,7 +14,7 @@ This language goals to train children for a print and read variables, math opera
 
 ## Before a training
 - Language must be experimented by trainer before the child.
-- TODO;
+- TODO: Read how to train a child with Child Lang.
 
 ## Types
 - String    : All characters supported by UTF-8. All nodes not parsed as other type is considered as string.
@@ -127,13 +127,4 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
 - Tokens must be in natural language like a "print".
 
 ## Other Examples
-    print    hello world
-
-    print   please type your name
-    read    NAME
-    print   hello NAME
-    print   how are you?
-    read    ANSWER
-    print   bye bye
-    print   1 plus 2
-    print   3 equals 4
+TODO: see examples directory
