@@ -26,13 +26,13 @@ command_arg
 //> Command expressions
 
 //< Command names
-COMMAND_WRITE: 'write';
-COMMAND_READ: 'read';
-COMMAND_FUNC: 'func';
-COMMAND_CALL: 'call';
-COMMAND_IF: 'if';
-COMMAND_ELSE: 'else';
-COMMAND_WHILE: 'while';
+COMMAND_WRITE     : 'write';
+COMMAND_READ      : 'read';
+COMMAND_FUNC      : 'func';
+COMMAND_CALL      : 'call';
+COMMAND_IF        : 'if';
+COMMAND_ELSE      : 'else';
+COMMAND_WHILE     : 'while';
 //> Command names
 
 //<Boolean definitions
