@@ -109,7 +109,7 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     NUM1    0
     NUM2    0
     
-# call (variable)
+# call (variable:function)
     call    GREETINGS
     NUM1    5
     NUM2    10
