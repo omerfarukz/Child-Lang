@@ -1,0 +1,5 @@
+write   please type your name
+read    NAME
+write   please type your age
+read    AGE
+write   your name is NAME and you are AGE years old

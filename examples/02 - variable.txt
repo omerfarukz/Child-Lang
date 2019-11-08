@@ -1,0 +1,14 @@
+NAME    Alice
+write   NAME
+
+AGE     9
+write   AGE
+
+MATH    5 plus 9
+write   SUM
+
+BOOL1   true
+write   BOOL1
+
+BOOL2   3 equal 4
+write   BOOL2

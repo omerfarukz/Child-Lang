@@ -1,0 +1,23 @@
+LEFT    0
+RIGHT   0
+
+; declare two functions
+func    PRINT
+write   hello from function
+SUM     LEFT plus RIGHT
+write   total is SUM
+
+; resets all values
+func    RESET
+LEFT    0
+RIGHT   0
+
+; set values
+LEFT    2
+RIGHT   3
+
+call    PRINT ; 
+call    RESET ; resetting left and right values
+call    PRINT 
+
+write   bye

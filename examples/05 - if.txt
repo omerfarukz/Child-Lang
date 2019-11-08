@@ -1,0 +1,7 @@
+write   please type your age
+read    AGE
+write   --- processing ---
+if      AGE less 9
+write   you are using a right language for introduction to programming
+
+write   thank you

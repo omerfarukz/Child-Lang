@@ -1,0 +1,3 @@
+write   please type your name
+read    NAME
+write   hello NAME

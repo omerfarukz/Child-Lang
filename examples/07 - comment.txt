@@ -1,0 +1,2 @@
+; this is the single line comment for reading purposes
+write   hello world ; say greeting to our home
