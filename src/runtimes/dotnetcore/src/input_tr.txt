@@ -1,0 +1,3 @@
+﻿yaz     bir sayı girin
+oku     SAYI
+yaz     girdiğin sayı SAYI dır

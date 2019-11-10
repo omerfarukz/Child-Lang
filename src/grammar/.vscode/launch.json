@@ -6,7 +6,6 @@
             "type": "antlr-debug",
             "request": "launch",
             "input": "input.txt",
-            "grammar": "ChildLang.g4",
             "startRule": "lang",
             "printParseTree": false,
             "visualParseTree": true

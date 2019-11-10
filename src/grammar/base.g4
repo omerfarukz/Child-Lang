@@ -1,4 +1,4 @@
-lexer grammar en;
+lexer grammar base;
 import common;
 
 //< Command names
@@ -12,8 +12,13 @@ COMMAND_WHILE   : 'while';
 //> Command names
 
 //<Boolean definitions
-BOOL_OP         : 'equal'|'greater'|'less';
-BOOL_STR        : 'true' | 'false';
+BOOL_OP         : BOOL_EQ | BOOL_GT | BOOL_LS;
+BOOL_EQ         : 'equals';
+BOOL_GT         : 'grater';
+BOOL_LS         : 'lesser';
+BOOL_STR        : BOOL_TRUE | BOOL_FALSE;
+BOOL_TRUE       : 'true';
+BOOL_FALSE      : 'false';
 //> Boolean definitions
 
 //< Math definitions
@@ -22,7 +27,3 @@ DIV             : 'divide';
 ADD             : 'plus';
 SUB             : 'minus';
 //> Math definitions
-
-//< Localization
-NUMBER: INT ('.' DIGIT+)?;
-//> Localization
