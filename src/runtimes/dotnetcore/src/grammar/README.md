@@ -1,1 +1,1 @@
-﻿build build.grammers.sh in the root directory to generate lexer/parser files.
+﻿Run build.grammers.sh in the root directory to generate lexer/parser files.
