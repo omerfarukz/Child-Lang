@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 
 grammar/*
+!gramar/README.md

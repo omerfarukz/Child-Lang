@@ -32,4 +32,7 @@
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.7.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="grammar\" />
+  </ItemGroup>
 </Project>
