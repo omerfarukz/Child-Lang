@@ -1,24 +1,27 @@
 # Child-Lang
-New programming language designed for children who can read and write
+New programming language designed for children who can read and write. Child-Lang is a language for trainers who want to teach programming to children in their native language before modern languages.
+
+### Disclaimer
+This repository is not ready to use. So, it is under development and not ready for the children.
 
 ## Motivation
-Children who can read and write in their language can learn to code. Visual programming references like code.org supports coding without typing. So, after code.org experiments child will be ready for coding. But, there is no programming language designed for children to the very first experiment. Considered non-alphanumeric characters, indention and other tokens are needed for lexing or parsing purposes.
+Children who can read and write in their language can learn to code. Visual programming references like code.org supports coding without typing. So, after code.org experiments child will be ready for coding. But, there is no programming language designed for children to the very first experiment. They are able to write programs in their native language. For example, printing something to screen is "print Hello" in English and "yaz Merhaba" in Turkish etc. Considered non-alphanumeric characters, indention and other tokens are needed for lexing or parsing purposes.
 
-This language goals to train children for a print and read variables, math operations with a simple if while, function implementations. "print hello" is very simple instead of "std::getline(std::cin, str);". Sure, they are able to learn python, ruby, c++ and the other modern languages and all they are lovely. But learning a logic of coding is more important learn a language designed to solve all problems.
+This language goals to train children for a print and read variables, math operations with a simple if while, function implementations. "print hello" is very simple instead of "std::getline(std::cin, str);". Sure, they are able to learn python, ruby, c++ and the other modern languages and all they are lovely. But learning logic of coding is more important to learn a language designed to solve all problems.
 
 ## Design rules
-- Variables only be uppercase characters or numeric with leading uppercase character
+- Variables must be uppercase characters or numeric with leading uppercase character
 - Block bodies must be separated with a single empty line
 - Commands and parameters must be separated with one or more space. Like print 1, print  2
-- No inner or sub commands are supported in body.
+- No inner or subcommands are supported in the body.
 
 ## Before a training
-- Language must be experimented by trainer before the child.
+- Language must be experienced by the trainer before the child.
 - TODO: Read how to train a child with Child Lang.
 
 ## Types
-- String    : All characters supported by UTF-8. All nodes not parsed as other type is considered as string.
-- Number    : Considered like double ( 1, 2, 3, 4.56, 0.67 )
+- String    : All characters supported by UTF-8. All nodes not parsed as other type is considered as String.
+- Number    : Considered as Double ( 1, 2, 3, 4.56, 0.67 )
 - Boolean   : true, false or expression in natural language like 1 equals 1, 3 greater 2
 
 ### Variable
@@ -123,9 +126,9 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     [new line]
 
 ## Design goals
-- No non alfanumeric chars will be used. Characters like & ( ) – [ { } ] : ', ? / * ^> are considered as string.
-- No sepetor will be used for any reason
-- Tokens must be in natural language like a "print".
+- No non alphanumeric chars will be used. Characters like & ( ) – [ { } ] : ', ? / * ^> are considered as string.
+- No separator will be used for any reason
+- Tokens must be in a natural language like a "print".
 
 ## Other Examples
-TODO: see examples directory
+See examples directory for multi language support.
