@@ -56,7 +56,7 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     VAR1 equals 6
     VAR2 equals VAR3
     
-### math argument // one op per line.
+### math argument
     1 plus 1
     2 minus 1
     3 times 5
