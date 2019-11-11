@@ -1,0 +1,2 @@
+; kodun okunurluğunu sağlamak için tek satırlık yorum.
+yaz     merhaba dünya ; evimize sıcak bir merhaba

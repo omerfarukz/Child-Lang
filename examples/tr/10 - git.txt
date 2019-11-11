@@ -1,4 +1,4 @@
-﻿SAYI1       0
+SAYI1       0
 SAYI2       0
 
 ; iki adet fonksiyon tanımlanıyor

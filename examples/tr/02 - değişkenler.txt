@@ -1,0 +1,14 @@
+ADI     Zeynep
+yaz     ADI
+
+YAŞ     7
+yaz     YAŞ
+
+MAT     5 artı 9
+yaz     MAT
+
+BOOL1   evet
+yaz     BOOL1
+
+BOOL2   3 eşittir 4
+yaz     BOOL2

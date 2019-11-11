@@ -1,0 +1,5 @@
+yaz     Lütfen adınızı girin
+oku     ADI
+yaz     Lütfen yaşınızı girin
+oku     YAŞ
+yaz     Adınız ADI ve YAŞ yaşındasınız

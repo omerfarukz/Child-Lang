@@ -4,7 +4,7 @@ import LanguageBase;
 //< Command names
 COMMAND_WRITE   : 'yaz';
 COMMAND_READ    : 'oku';
-COMMAND_FUNC    : 'etiket';
+COMMAND_FUNC    : 'metot';
 COMMAND_CALL    : 'git';
 COMMAND_IF      : 'eğer';
 COMMAND_ELSE    : 'değilse';
@@ -12,8 +12,11 @@ COMMAND_WHILE   : 'döngü';
 //> Command names
 
 //<Boolean definitions
-BOOL_OP         : 'eşitir'|'büyüktür'|'küçüktür';
-BOOL_STR        : 'doğru' | 'yanlış';
+BOOL_EQ         : 'eşittir';
+BOOL_GT         : 'büyüktür';
+BOOL_LT         : 'küçüktür';
+BOOL_TRUE       : 'evet';
+BOOL_FALSE      : 'hayır';
 //> Boolean definitions
 
 //< Math definitions

@@ -1,0 +1,6 @@
+metot   YAZDIR
+yaz     Merhaba Dünya
+yaz     ben bir metotum.
+yaz     görüşürüz
+
+git     YAZDIR

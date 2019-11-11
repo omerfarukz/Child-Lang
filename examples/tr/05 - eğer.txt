@@ -1,0 +1,7 @@
+yaz     Lütfen yaşınızı girin
+oku     YAŞ
+yaz     --- hesaplanıyor ---
+eğer    YAŞ küçüktür 9
+yaz     Programlama öğrenmek için doğru yerdesin
+
+yaz     Teşekkürler

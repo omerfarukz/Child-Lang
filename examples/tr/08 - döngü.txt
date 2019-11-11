@@ -1,0 +1,8 @@
+; 10 dan 1 e kadar olan tüm sayıların yazdırılması
+SAYAÇ   10
+döngü   SAYAÇ büyüktür 1
+yaz     SAYAÇ
+; sayaça yeni değeri atanarak bir küçültürülüyor
+SAYAÇ   SAYAÇ eksi 1
+
+print hikaye sona erdi
