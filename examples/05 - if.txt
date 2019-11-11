@@ -1,7 +1,7 @@
 print   please type your age
 read    AGE
 print   --- processing ---
-if      AGE less 9
+if      AGE lesser 9
 print   you are using a right language for introduction to programming
 
 print   thank you

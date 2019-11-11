@@ -1,6 +1,6 @@
 func    PRINT
 print   hello world
 print   i am a function.
-print   byte
+print   bye
 
 call    PRINT
