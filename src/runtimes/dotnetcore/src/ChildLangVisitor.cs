@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using runtime;
 using static LanguageBaseParser;
 
 namespace ChildLang.impl
@@ -38,9 +38,7 @@ namespace ChildLang.impl
         public override object VisitCommand_block_if([NotNull] Command_block_ifContext context)
         {
             if (context.ChildCount < 3)
-            {
-                throw new Exception();
-            }
+                throw new ChildLangRuntimeException();
 
             bool condition = Eval(context.GetChild<Bool_argContext>(0));
             if (condition)
@@ -127,7 +125,8 @@ namespace ChildLang.impl
             {
                 return Eval(b);
             }
-            throw new NotSupportedException();
+
+            throw new ChildLangRuntimeException();
         }
 
         private object Eval(TerminalNodeImpl t)
@@ -152,7 +151,7 @@ namespace ChildLang.impl
             {
                 return false;
             }
-            throw new ArgumentException();
+            throw new ChildLangRuntimeException();
         }
 
         private bool Eval(Bool_argContext m)
@@ -165,11 +164,11 @@ namespace ChildLang.impl
                 if (m1.Symbol.Type == BOOL_FALSE)
                     return false;
 
-                throw new ArgumentException();
+                throw new ChildLangRuntimeException();
             }
 
             if (m.ChildCount != 3)
-                throw new Exception();
+                throw new ChildLangRuntimeException();
 
             string left = GetTerminalString(GetLastTerminalNodeChild(m.GetChild(0), 0));
             var op = (TerminalNodeImpl)m.children[1];
@@ -185,7 +184,7 @@ namespace ChildLang.impl
                 return double.Parse(left) < double.Parse(right);
 
 
-            throw new ArgumentException();
+            throw new ChildLangRuntimeException();
         }
 
         private string GetTerminalString(TerminalNodeImpl t)
@@ -198,7 +197,7 @@ namespace ChildLang.impl
             {
                 return t.GetText();
             }
-            throw new ArgumentException();
+            throw new ChildLangRuntimeException();
         }
 
         private double Eval(Math_argContext m)
@@ -233,23 +232,14 @@ namespace ChildLang.impl
             return GetLastTerminalNodeChild(context.GetChild(0), index);
         }
 
-
-        private  object GetLastTerminalNodeValue(IParseTree context, int index)
-        {
-            var value = GetLastTerminalNodeChild(context.GetChild(0), index);
-            return Eval(value);
-        }
-
         private double GetDoubleValue(TerminalNodeImpl t)
         {
             if (t.Symbol.Type == VARIABLE)
             {
                 return Convert.ToDouble(VARIABLES[t.ToString()]);
             }
-            else// if (t.Symbol.Type == NUMBER)
-            {
-                return double.Parse(t.GetText());
-            }
+
+            return double.Parse(t.GetText());
         }
     }
 }
