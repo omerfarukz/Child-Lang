@@ -5,10 +5,10 @@ AGE     9
 print   AGE
 
 MATH    5 plus 9
-print   SUM
+print   MATH
 
 BOOL1   true
 print   BOOL1
 
-BOOL2   3 equal 4
+BOOL2   3 equals 4
 print   BOOL2
