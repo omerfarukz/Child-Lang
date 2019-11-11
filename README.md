@@ -49,14 +49,14 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
     NAME        John Smith
     ADDRESS     123 4rd Ave 5th Floor, New York, NY 12345, United States of America
 
-### boolean operation
+### boolean argument
     1 equals 2
     3 greater 4
     5 less 5
     VAR1 equals 6
     VAR2 equals VAR3
     
-### math operation // one op per line.
+### math argument // one op per line.
     1 plus 1
     2 minus 1
     3 times 5
