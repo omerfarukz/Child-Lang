@@ -1,3 +1,23 @@
-﻿print   type a number
-read    NUMBER
-print   you typed NUMBER number.
+﻿LEFT    0
+RIGHT   0
+
+; declare two functions
+func    PRINT
+print   hello from function
+SUM     LEFT plus RIGHT
+print   total is SUM
+
+; resets all values
+func    RESET
+LEFT    0
+RIGHT   0
+
+; set values
+LEFT    2
+RIGHT   3
+
+call    PRINT ; 
+call    RESET ; resetting left and right values
+call    PRINT 
+
+print   bye

@@ -1,6 +1,6 @@
-lexer grammar lang_tr;
-import base;
- 
+grammar Local_tr;
+import LanguageBase;
+
 //< Command names
 COMMAND_WRITE   : 'yaz';
 COMMAND_READ    : 'oku';

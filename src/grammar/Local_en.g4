@@ -1,7 +1,6 @@
-lexer grammar lang_en;
-import base;
+grammar Local_en;
+import LanguageBase;
 
-//< Command names
 COMMAND_WRITE   : 'print';
 
 fragment DEC_DELIMITER:  '.';

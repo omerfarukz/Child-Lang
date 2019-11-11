@@ -2,9 +2,8 @@
     "antlr4.generation": {
         "mode": "external",
         "outputDir": ".antlr",
-        "language": "CSharp",
         "listeners": false,
-        "visitors": true
+        "visitors": false
     },
     "antlr4.referencesCodeLens.enabled": true
 }

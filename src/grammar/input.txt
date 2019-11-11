@@ -1,2 +1,6 @@
-read   NAME
-print  hello NAME
+func    PRINT
+print   hello world
+print   i am a function.
+print   byte
+
+call    PRINT

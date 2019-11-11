@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using static langParser;
+using static LanguageBaseParser;
 
 namespace ChildLang.impl
 {
-    public class ChildLangVisitor : langBaseVisitor<object>
+    public class ChildLangVisitor : LanguageBaseBaseVisitor<object>
     {
         private Dictionary<string, object> VARIABLES = new Dictionary<string, object>();
 
         public override object VisitCommand_block_func([NotNull] Command_block_funcContext context)
         {
-            var body = context.GetChild<BlockContext>(1);
+            var body = (BlockContext)context.GetChild(3);
             VARIABLES.Add(context.VARIABLE().ToString(), body);
-            return base.Visit(context.children[2]);
+            return null;
         }
 
         public override object VisitCommand_block_while([NotNull] Command_block_whileContext context)
         {
-            var conditionExp = context.GetChild<Bool_argContext>(1);
-            var body = context.GetChild<BlockContext>(1);
+            var conditionExp = (Bool_argContext)context.GetChild(1);
+            var body = (BlockContext)context.GetChild(3);
             while (true)
             {
-                bool condition = Eval(conditionExp.bool_arg()[0]);
+                bool condition = Eval(conditionExp);
                 if (!condition)
                     break;
                 Visit(body);
@@ -41,20 +42,24 @@ namespace ChildLang.impl
                 throw new Exception();
             }
 
-            bool condition = Eval(context.GetChild<Bool_argContext>(0).bool_arg()[0]);
+            bool condition = Eval(context.GetChild<Bool_argContext>(0));
             if (condition)
             {
-                var body = (BlockContext)context.children[1];
-                Visit(body);
-            }
-            else if (context.ChildCount == 4)
+                var body = (BlockContext)context.GetChild(3);
+                return Visit(body);
+            }       
+            else if (context.ChildCount == 5)
             {
-                var body = context.GetChild< Command_block_elseContext>(2).block();
-                Visit(body);
+                // else's body
+                var els = (Command_block_elseContext)context.GetChild(4);
+                if (els != null)
+                {
+                    var b = els.block();
+                    return Visit(b);
+                }
             }
 
-            var footer = context.children[context.ChildCount - 1];
-            return base.Visit(footer);
+            return null;
         }
 
         public override object VisitCommand_call([NotNull] Command_callContext context)
@@ -63,25 +68,12 @@ namespace ChildLang.impl
             return VisitBlock(body);
         }
 
-
-        /// <summary>
-        /// todo: remove
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public override object VisitBlock([NotNull] BlockContext context)
+        public override object VisitCommand_assign([NotNull] Command_assignContext context)
         {
-            return base.VisitBlock(context);
-        }
+            var value = Eval(context.children[1]).ToString();
+            VARIABLES[context.children[0].ToString()] = value;
 
-        public override object VisitAssign_arg([NotNull] Assign_argContext context)
-        {
-            var value = Eval(context.children[0]).ToString();
-            var parent = (Command_assignContext)context.Parent;
-            ITerminalNode parentVar = parent.VARIABLE();
-            VARIABLES[parentVar.ToString()] = value;
-
-            return base.VisitAssign_arg(context);
+            return base.VisitCommand_assign(context);
         }
 
         public override object VisitCommand_read([NotNull] Command_readContext context)
@@ -152,18 +144,36 @@ namespace ChildLang.impl
             {
                 return VARIABLES[t.ToString()];
             }
-
+            else if (t.Symbol.Type == BOOL_TRUE)
+            {
+                return true;
+            }
+            else if (t.Symbol.Type == VARIABLE)
+            {
+                return false;
+            }
             throw new ArgumentException();
         }
 
         private bool Eval(Bool_argContext m)
         {
+            if (m.children.Count == 1 && m.children[0] is TerminalNodeImpl m1)
+            {
+                if (m1.Symbol.Type == BOOL_TRUE)
+                    return true;
+
+                if (m1.Symbol.Type == BOOL_FALSE)
+                    return false;
+
+                throw new ArgumentException();
+            }
+
             if (m.ChildCount != 3)
                 throw new Exception();
 
-            string left = GetTerminalString((TerminalNodeImpl)m.children[0]);
+            string left = GetTerminalString(GetLastTerminalNodeChild(m.GetChild(0), 0));
             var op = (TerminalNodeImpl)m.children[1];
-            string right = GetTerminalString((TerminalNodeImpl)m.children[2]);
+            string right = GetTerminalString(GetLastTerminalNodeChild(m.GetChild(2), 0));
 
             if (op.Symbol.Type == BOOL_EQ)
                 return left == right; // compare bool as string
@@ -171,14 +181,9 @@ namespace ChildLang.impl
             if (op.Symbol.Type == BOOL_GT)
                 return double.Parse(left) > double.Parse(right);
 
-            if (op.Symbol.Type == BOOL_LS)
+            if (op.Symbol.Type == BOOL_LT)
                 return double.Parse(left) < double.Parse(right);
 
-            if (op.Symbol.Type == BOOL_TRUE)
-                return true;
-
-            if (op.Symbol.Type == BOOL_FALSE)
-                return false;
 
             throw new ArgumentException();
         }
@@ -200,9 +205,9 @@ namespace ChildLang.impl
         {
             double value = 0;
 
-            var left = GetDoubleValue((TerminalNodeImpl)m.children[0]);
+            var left = GetDoubleValue(GetLastTerminalNodeChild(m.GetChild(0), 0));
             var op = (TerminalNodeImpl)m.children[1];
-            var right = GetDoubleValue((TerminalNodeImpl)m.children[2]);
+            var right = GetDoubleValue(GetLastTerminalNodeChild(m.GetChild(2), 0));
 
             if (op.Symbol.Type == ADD)
                 return left + right;
@@ -217,6 +222,22 @@ namespace ChildLang.impl
                 return left / right;
 
             return value;
+        }
+
+        private TerminalNodeImpl GetLastTerminalNodeChild(IParseTree context, int index)
+        {
+            if (context.ChildCount == 0)
+            {
+                return (TerminalNodeImpl)context;
+            }
+            return GetLastTerminalNodeChild(context.GetChild(0), index);
+        }
+
+
+        private  object GetLastTerminalNodeValue(IParseTree context, int index)
+        {
+            var value = GetLastTerminalNodeChild(context.GetChild(0), index);
+            return Eval(value);
         }
 
         private double GetDoubleValue(TerminalNodeImpl t)
