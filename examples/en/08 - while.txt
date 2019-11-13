@@ -1,6 +1,6 @@
 ; code prints numbers from 10 to 1
 COUNTER 10
-while   COUNTER greater 1
+while   COUNTER greater 0
 print   COUNTER
 ; set new value of counter
 COUNTER COUNTER minus 1
