@@ -63,7 +63,7 @@ SUB             : 'minus';
 
 //< Common
 VARIABLE                : CHARSET ~(' '|'\r'|'\n')*;
-NUMBER                  : INT (DEC_DELIMITER DIGIT+)?;
+NUMBER                  : '0' | INT (DEC_DELIMITER DIGIT+)?;
 STRING                  : QUOTE ('""'|~'"')* QUOTE
                         | TEXT
                         ;

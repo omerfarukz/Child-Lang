@@ -1,0 +1,24 @@
+{
+  "name": "child-lang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "target/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "antlr": "rm grammar/* && cp ../../../grammar/*.g4 grammar && antlr4ts -visitor -no-listener grammar/* && rm grammar/*.g4"
+  },
+  "author": "Omer Faruk ZORLU",
+  "license": "ISC",
+  "dependencies": {
+    "@types/readline-sync": "^1.4.3",
+    "antlr4ts": "^0.5.0-alpha.3",
+    "readline": "^1.3.0",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.7",
+    "antlr4ts-cli": "^0.5.0-alpha.3",
+    "types": "^0.1.1",
+    "typescript": "^3.7.2"
+  }
+}
