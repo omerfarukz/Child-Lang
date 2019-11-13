@@ -4,7 +4,7 @@ import { LanguageBaseParser } from './grammar/LanguageBaseParser';
 import { ChildLangVisitor } from './ChildLangVisitor';
 
 
-var code = "; code prints numbers from 10 to 1\r\nCOUNTER 10\r\nwhile   COUNTER greater 0\r\nprint   COUNTER\r\n; set new value of counter\r\nCOUNTER COUNTER minus 1\r\n\r\nprint end of the story";
+var code = "read LINE\r\nprint LINE";
 // Create the lexer and parser
 let inputStream = new ANTLRInputStream(code);
 let lexer = new LanguageBaseLexer(inputStream);
