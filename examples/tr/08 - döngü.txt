@@ -2,7 +2,7 @@
 SAYAÇ   10
 döngü   SAYAÇ büyüktür 0
 yaz     SAYAÇ
-; sayaça yeni değeri atanarak bir küçültürülüyor
+; sayaça yeni değeri atanarak bir küçültülüyor
 SAYAÇ   SAYAÇ eksi 1
 
 print hikaye sona erdi
