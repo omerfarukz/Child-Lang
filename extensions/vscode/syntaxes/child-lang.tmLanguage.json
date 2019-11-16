@@ -1,0 +1,66 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ChildLang",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#strings"
+        }
+    ],
+    "repository": {
+        "comment": {
+            "begin": ";",
+            "end": "\n",
+            "name": "comment.line.ch"
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.ch",
+                    "match": "\\b(print|read|func|call|if|else|while|true|false)\\b"
+                },
+                {
+                    "name": "markup.italic.ch",
+                    "match": "\\b(equals|greater|lesser|times|divide|plus|minus)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.ch",
+                    "match": "\\b((0|[1-9]).?([0-9])*)\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "markup.bold.ch",
+                    "match": "\\b([A-Z_][A-Z0-9_]+)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.ch",
+            "patterns": [
+                {
+                    "name": "string.word.ch",
+                    "match": "\\b((-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+))\\b"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.ch"
+}

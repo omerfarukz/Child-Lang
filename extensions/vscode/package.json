@@ -1,0 +1,86 @@
+{
+  "name": "childlang",
+  "displayName": "ChildLang",
+  "description": "This is the README for your extension \"childlang\". After writing up a brief description, we recommend including the following sections.",
+  "version": "0.0.1",
+  "publisher": "Omer Faruk ZORLU",
+  "engines": {
+    "vscode": "^1.40.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "child-lang",
+        "aliases": [
+          "Child Lang",
+          "child-lang"
+        ],
+        "extensions": [
+          "ch"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "child-lang",
+        "scopeName": "source.ch",
+        "path": "./syntaxes/child-lang.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "ch.evalFile",
+        "title": "Child-Lang Run"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ch.evalFile",
+        "key": "F6",
+        "when": "editorTextFocus"
+      }
+    ],
+    "scripts": {
+      "vscode:prepublish": "npm run compile",
+      "compile": "tsc -p ./",
+      "watch": "tsc -watch -p ./",
+      "postinstall": "node ./node_modules/vscode/bin/install"
+    }
+  },
+  "main": "./out/runtime.js",
+  "breakpoints": [
+    {
+      "language": "markdown"
+    }
+  ],
+  "activationEvents": [
+    "onCommand:ch.evalFile"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-lang": "copyfiles -V -a -u 2 ../../src/runtimes/javascript/src/*.ts ../../src/runtimes/javascript/src/grammar/*.ts ./runtime",
+    "build-grammars": "cd ../../ && sh build.grammars.sh",
+    "build": "rm -rf out && npm run build-grammars && npm run copy-lang && tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.7",
+    "@types/readline-sync": "^1.4.3",
+    "@types/vscode": "^1.40.0",
+    "copyfiles": "^2.1.1",
+    "types": "^0.1.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@types/find-process": "^1.2.0",
+    "antlr4": "^4.7.2",
+    "antlr4ts": "^0.5.0-alpha.3",
+    "find-process": "^1.4.3",
+    "readline-sync": "^1.4.10"
+  }
+}
