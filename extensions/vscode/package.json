@@ -1,9 +1,10 @@
 {
   "name": "childlang",
   "displayName": "ChildLang",
-  "description": "This is the README for your extension \"childlang\". After writing up a brief description, we recommend including the following sections.",
-  "version": "0.0.1",
-  "publisher": "Omer Faruk ZORLU",
+  "description": "New programming language designed for children who can read and write.",
+  "version": "0.1.4",
+  "publisher": "omerfarukz",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.40.0"
   },
@@ -80,7 +81,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-lang": "copyfiles -V -a -u 2 ../../src/runtimes/javascript/src/*.ts ../../src/runtimes/javascript/src/grammar/*.ts ./runtime",
     "build-grammars": "cd ../../ && sh build.grammars.sh",
-    "build": "rm -rf out && npm run build-grammars && npm run copy-lang && tsc"
+    "build": "rm -rf out && npm run build-grammars && npm run copy-lang && tsc",
+    "pack": "vsce package"
   },
   "author": "",
   "license": "ISC",
@@ -90,7 +92,8 @@
     "@types/vscode": "^1.40.0",
     "copyfiles": "^2.1.1",
     "types": "^0.1.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "vsce": "^1.69.0"
   },
   "dependencies": {
     "@types/find-process": "^1.2.0",

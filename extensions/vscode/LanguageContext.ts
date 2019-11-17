@@ -23,8 +23,6 @@ export class LanguageContext {
     }
 
     Run(code: string, language: string) {
-        console.log("lang", language);
-
         let inputStream = new ANTLRInputStream(code);
         let lexer: Lexer;
 
