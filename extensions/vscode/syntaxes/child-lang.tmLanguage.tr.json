@@ -1,0 +1,66 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ChildLang",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#strings"
+        }
+    ],
+    "repository": {
+        "comment": {
+            "begin": ";",
+            "end": "\n",
+            "name": "comment.line.tr.ch"
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.tr.ch",
+                    "match": "\\b(yaz|oku|metot|çağır|eğer|değilse|döngü|evet|hayır)\\b"
+                },
+                {
+                    "name": "markup.italic.tr.ch",
+                    "match": "\\b(eşittir|büyüktür|küçüktür|çarpı|kere|bölü|artı|eksi)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.tr.ch",
+                    "match": "\\b((0|[1-9]).?([0-9])*)\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "markup.bold.tr.ch",
+                    "match": "\\b([A-Z_][A-Z0-9_]+)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.tr.ch",
+            "patterns": [
+                {
+                    "name": "string.word.tr.ch",
+                    "match": "\\b((-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+))\\b"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.tr.ch"
+}

@@ -5,6 +5,7 @@ import { ParseTree } from "antlr4ts/tree/ParseTree";
 import { LanguageBaseLexer } from "./grammar/LanguageBaseLexer";
 
 import readlineSync = require('readline-sync'); // TODO:
+import { isNumber } from "util";
 
 export class ChildLangVisitor implements LanguageBaseVisitor<object>
 {
@@ -50,7 +51,9 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
         } else {
             var elseBlock = ctx.command_block_else();
             if (elseBlock != null) {
-                return this.visit(elseBlock.block());
+                // TODO:https://github.com/omerfarukz/Child-Lang/blob/master/examples/en/06%20-%20if%20else.txt
+                // BUG
+                return this.visit(elseBlock.block()); 
             }
         }
         return this.defaultResult;
@@ -159,9 +162,9 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
                 if (operator.symbol.type == LanguageBaseLexer.BOOL_EQ)
                     return (left == right);
                 else if (operator.symbol.type == LanguageBaseLexer.BOOL_GT)
-                    return (left > right);
+                    return (parseFloat(left) > parseFloat(right));
                 else if (operator.symbol.type == LanguageBaseLexer.BOOL_LT)
-                    return (left < right);
+                    return (parseFloat(left) < parseFloat(right));
             }
         }
 

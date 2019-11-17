@@ -22,9 +22,25 @@
           "ch"
         ],
         "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "child-lang-tr",
+        "aliases": [
+          "Child Lang-tr",
+          "child-lang-tr"
+        ],
+        "extensions": [
+          "tr.ch"
+        ],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
+      {
+        "language": "child-lang-tr",
+        "scopeName": "source.tr.ch",
+        "path": "./syntaxes/child-lang.tmLanguage.tr.json"
+      },
       {
         "language": "child-lang",
         "scopeName": "source.ch",

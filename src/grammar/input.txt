@@ -1,1 +1,7 @@
-AAA COUNTER greater 0
+print   please type your age
+read    AGE
+
+if      AGE lesser 9
+print   you are using a right language for introduction to programming
+else
+print   what do you think about python or go?
