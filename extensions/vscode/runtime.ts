@@ -47,11 +47,23 @@ export function activate(context: ExtensionContext) {
 
                 var text = editor.document.getText(textRange);
 
-                var path = editor.document.uri.fsPath;
+                var naturalLanguage = "";
+                if (editor.document.uri != null && editor.document.uri.path != null) {
+                    var fsPath = editor.document.uri.fsPath;
+
+                    var extensionIndex = fsPath.indexOf(".child");
+                    if (extensionIndex > -1) {
+                        var langIndex = fsPath.lastIndexOf(".", extensionIndex - 1);
+                        if (langIndex > -1 && extensionIndex != langIndex) {
+                            naturalLanguage = fsPath.substring(langIndex+1, extensionIndex);
+                        }
+                    }
+                }
+
                 var io = new VSCodeTerminalInputOutput();
                 io.initialize(async () => {
                     var context = new LanguageContext(io);
-                    await context.Run(text, '');
+                    await context.Run(text, naturalLanguage);
                 });
             }
         }
