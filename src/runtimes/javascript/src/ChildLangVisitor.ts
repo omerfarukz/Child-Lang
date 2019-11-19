@@ -4,32 +4,34 @@ import { TerminalNode } from "antlr4ts/tree/TerminalNode";
 import { ParseTree } from "antlr4ts/tree/ParseTree";
 import { LanguageBaseLexer } from "./grammar/LanguageBaseLexer";
 
-import readlineSync = require('readline-sync'); // TODO:
-import { isNumber } from "util";
+import { UserInputOutput } from "./UserInputOutput";
+import { ErrorNode } from "antlr4ts/tree/ErrorNode";
+import { RuleNode } from "antlr4ts/tree/RuleNode";
 
 export class ChildLangVisitor implements LanguageBaseVisitor<object>
 {
     private defaultResult: Object = new Object();
     private ENVIRONMENT: Map<string, any> = new Map<string, any>();
 
+    constructor(private io: UserInputOutput) { }
+
     visitCommand_print(ctx: P.Command_printContext) {
         for (var i = 1; i < ctx.childCount; i++) {
             const value = this.eval(ctx.getChild(i));
-            let valueToWrite: string = "" + value; // TODO: 
+            let valueToWrite: string = "" + value;
 
-            process.stdout.write(valueToWrite); // TODO:
+            this.io.write(valueToWrite, false);
 
             if (i < ctx.childCount)
-                process.stdout.write(' '); // TODO: 
+                this.io.write(' ', false);
         }
-        process.stdout.write('\r\n');
+        this.io.write('', true);
         return this.defaultResult;
     }
 
-    visitCommand_read(ctx: P.Command_readContext) {
-        var line = readlineSync.question('');
+    async visitCommand_read(ctx: P.Command_readContext) {
+        var line = await this.io.readLine();
         this.ENVIRONMENT.set(ctx.VARIABLE().text, line);
-
         return this.defaultResult;
     }
 
@@ -39,21 +41,19 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
         return this.defaultResult;
     }
 
-    visitCommand_call(ctx: P.Command_callContext) {
+    async visitCommand_call(ctx: P.Command_callContext) {
         var block = this.ENVIRONMENT.get(ctx.VARIABLE().text);
-        return this.visit(block);
+        return await this.visit(block);
     }
 
-    visitCommand_block_if(ctx: P.Command_block_ifContext) {
+    async visitCommand_block_if(ctx: P.Command_block_ifContext) {
         let condition: boolean = this.eval(ctx.bool_arg());
         if (condition) {
-            return this.visit(ctx.block());
+            return await this.visit(ctx.block());
         } else {
             var elseBlock = ctx.command_block_else();
             if (elseBlock != null) {
-                // TODO:https://github.com/omerfarukz/Child-Lang/blob/master/examples/en/06%20-%20if%20else.txt
-                // BUG
-                return this.visit(elseBlock.block()); 
+                return await this.visit(elseBlock.block());
             }
         }
         return this.defaultResult;
@@ -64,14 +64,14 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
         return this.defaultResult;
     }
 
-    visitCommand_block_while(ctx: P.Command_block_whileContext) {
+    async visitCommand_block_while(ctx: P.Command_block_whileContext) {
         while (this.eval(ctx.bool_arg())) {
-            this.visit(ctx.block());
+            await this.visit(ctx.block());
         }
         return this.defaultResult;
     }
 
-    visit(tree: import("antlr4ts/tree/ParseTree").ParseTree): object {
+    async visit(tree: ParseTree): Promise<object> {
         //this.log(tree.toStringTree());
         if (
             tree instanceof P.LangContext ||
@@ -79,31 +79,32 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
             tree instanceof P.CommandContext
         ) {
             if (tree.children != null) {
-                tree.children.forEach(child => {
-                    this.visit(child);
-                });
+                for(let i = 0; i < tree.childCount; i++) {
+                    const child = tree.getChild(i);
+                    await this.visit(child);
+                }
             }
         } else {
             if (tree instanceof P.Command_printContext)
                 return this.visitCommand_print(tree);
 
             if (tree instanceof P.Command_readContext)
-                return this.visitCommand_read(tree);
+                return await this.visitCommand_read(tree);
 
             if (tree instanceof P.Command_assignContext)
                 return this.visitCommand_assign(tree);
 
             if (tree instanceof P.Command_callContext)
-                return this.visitCommand_call(tree);
+                return await this.visitCommand_call(tree);
 
             if (tree instanceof P.Command_block_ifContext)
-                return this.visitCommand_block_if(tree);
+                return await this.visitCommand_block_if(tree);
 
             if (tree instanceof P.Command_block_funcContext)
                 return this.visitCommand_block_func(tree);
 
             if (tree instanceof P.Command_block_whileContext)
-                return this.visitCommand_block_while(tree);
+                return await this.visitCommand_block_while(tree);
         }
         return this.defaultResult;
     }
@@ -139,8 +140,6 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
                 var operator = tree.getChild(1) as TerminalNode;
                 const right = parseFloat(this.eval(tree.getChild(2)));
 
-                var evaluated = Number.NaN;
-
                 if (operator.symbol.type == LanguageBaseLexer.ADD)
                     return left + right;
                 if (operator.symbol.type == LanguageBaseLexer.SUB)
@@ -158,7 +157,6 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
                 var operator = tree.getChild(1) as TerminalNode;
                 const right = this.eval(tree.getChild(2));
 
-                let evaluated = false;
                 if (operator.symbol.type == LanguageBaseLexer.BOOL_EQ)
                     return (left == right);
                 else if (operator.symbol.type == LanguageBaseLexer.BOOL_GT)
@@ -171,13 +169,13 @@ export class ChildLangVisitor implements LanguageBaseVisitor<object>
         throw new Error("tree can not evaluated. " + tree.toStringTree());
     }
 
-    visitChildren(node: import("antlr4ts/tree/RuleNode").RuleNode): object {
+    visitChildren(node: RuleNode): object {
         throw new Error("Method not implemented.");
     }
-    visitTerminal(node: import("antlr4ts/tree/TerminalNode").TerminalNode): object {
+    visitTerminal(node: TerminalNode): object {
         throw new Error("Method not implemented.");
     }
-    visitErrorNode(node: import("antlr4ts/tree/ErrorNode").ErrorNode): object {
+    visitErrorNode(node: ErrorNode): object {
         throw new Error("Method not implemented.");
     }
 

@@ -1,4 +1,6 @@
-import { commands, window, Terminal, ProgressLocation, ExtensionContext } from 'vscode';
+import { commands, window, Terminal, ProgressLocation, ExtensionContext, Range } from 'vscode';
+import { VSCodeTerminalInputOutput } from './VSCodeTerminalInputOutput';
+import { LanguageContext } from './LanguageContext';
 
 const terminalName: string = 'Child Lang';
 
@@ -31,21 +33,25 @@ function getREPL(show: boolean): Thenable<Terminal> {
 }
 
 export function activate(context: ExtensionContext) {
-    const contextPath = context.asAbsolutePath("out/LanguageContext.js");
-
     context.subscriptions.push(commands.registerCommand(
         'ch.evalFile',
         () => {
             let editor = window.activeTextEditor;
-            if (editor == null)
-                return;
+            if (editor != null && editor.document != null) {
+                var firstLine = editor.document.lineAt(0);
+                var lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+                var textRange = new Range(0,
+                    firstLine.range.start.character,
+                    editor.document.lineCount - 1,
+                    lastLine.range.end.character);
 
-            var path = editor.document.uri.fsPath;
-            if (path.endsWith(".ch")) {
-                getREPL(true).then(terminal => {
-                    if (editor != null) {
-                        terminal.sendText("node " + contextPath + ' ' + path);
-                    }
+                var text = editor.document.getText(textRange);
+
+                var path = editor.document.uri.fsPath;
+                var io = new VSCodeTerminalInputOutput();
+                io.initialize(async () => {
+                    var context = new LanguageContext(io);
+                    await context.Run(text, '');
                 });
             }
         }

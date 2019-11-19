@@ -5,24 +5,26 @@ import { LanguageBaseParser } from './runtime/src/runtimes/javascript/src/gramma
 import { ChildLangVisitor } from './runtime/src/runtimes/javascript/src/ChildLangVisitor';
 import { Local_trLexer } from './runtime/src/runtimes/javascript/src/grammar/Local_trLexer';
 import { Local_trParser } from './runtime/src/runtimes/javascript/src/grammar/Local_trParser';
-import { Local_enParser } from './runtime/src/runtimes/javascript/src/grammar/Local_enParser';
+import { UserInputOutput } from './runtime/src/runtimes/javascript/src/UserInputOutput';
 
 export class LanguageContext {
 
-    RunFile(path: string) {
-        console.clear();
+    // RunFile(path: string) {
+    //     console.clear();
 
-        fs.readFile(path, 'utf-8', (err, data) => {
-            if (err)
-                throw err;
-            if (path.endsWith("tr.ch"))
-                this.Run(data, "tr");
+    //     fs.readFile(path, 'utf-8', (err, data) => {
+    //         if (err)
+    //             throw err;
+    //         if (path.endsWith("tr.ch"))
+    //             this.Run(data, "tr");
 
-            this.Run(data, "");
-        });
-    }
+    //         this.Run(data, "");
+    //     });
+    // }
 
-    Run(code: string, language: string) {
+    constructor(private io: UserInputOutput) {}
+
+    async Run(code: string, language: string) {
         let inputStream = new ANTLRInputStream(code);
         let lexer: Lexer;
 
@@ -33,17 +35,14 @@ export class LanguageContext {
             lexer = new LanguageBaseLexer(inputStream);
 
         let tokenStream = new CommonTokenStream(lexer);
-        var visitor = new ChildLangVisitor();
+        var visitor = new ChildLangVisitor(this.io);
         if (language == "tr") {
             let parser = new Local_trParser(tokenStream);
             visitor.visit(parser.lang());
         }
         else {
             let parser = new LanguageBaseParser(tokenStream);
-            visitor.visit(parser.lang());
+            await visitor.visit(parser.lang());
         }
-        
     }
 }
-
-new LanguageContext().RunFile(process.argv[2]);
