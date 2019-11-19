@@ -54,7 +54,7 @@ Any upper case string without space and leading uppercase character ( AGE, NAME1
 ### boolean argument
     1 equals 2
     3 greater 4
-    5 less 5
+    5 lesser 5
     VAR1 equals 6
     VAR2 equals VAR3
     
