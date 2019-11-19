@@ -22,16 +22,16 @@
         "comment": {
             "begin": ";",
             "end": "\n",
-            "name": "comment.line.ch"
+            "name": "comment.line.child"
         },
         "keywords": {
             "patterns": [
                 {
-                    "name": "keyword.control.ch",
+                    "name": "keyword.control.child",
                     "match": "\\b(print|read|func|call|if|else|while|true|false)\\b"
                 },
                 {
-                    "name": "markup.italic.ch",
+                    "name": "markup.italic.child",
                     "match": "\\b(equals|greater|lesser|times|divide|plus|minus)\\b"
                 }
             ]
@@ -39,7 +39,7 @@
         "constants": {
             "patterns": [
                 {
-                    "name": "constant.numeric.ch",
+                    "name": "constant.numeric.child",
                     "match": "\\b((0|[1-9]).?([0-9])*)\\b"
                 }
             ]
@@ -47,20 +47,20 @@
         "variables": {
             "patterns": [
                 {
-                    "name": "markup.bold.ch",
+                    "name": "markup.bold.child",
                     "match": "\\b([A-Z_][A-Z0-9_]+)\\b"
                 }
             ]
         },
         "strings": {
-            "name": "string.ch",
+            "name": "string.child",
             "patterns": [
                 {
-                    "name": "string.word.ch",
+                    "name": "string.word.child",
                     "match": "\\b((-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+))\\b"
                 }
             ]
         }
     },
-    "scopeName": "source.ch"
+    "scopeName": "source.child"
 }

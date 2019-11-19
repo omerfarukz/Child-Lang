@@ -22,16 +22,16 @@
         "comment": {
             "begin": ";",
             "end": "\n",
-            "name": "comment.line.tr.ch"
+            "name": "comment.line.tr.child"
         },
         "keywords": {
             "patterns": [
                 {
-                    "name": "keyword.control.tr.ch",
+                    "name": "keyword.control.tr.child",
                     "match": "\\b(yaz|oku|metot|çağır|eğer|değilse|döngü|evet|hayır)\\b"
                 },
                 {
-                    "name": "markup.italic.tr.ch",
+                    "name": "markup.italic.tr.child",
                     "match": "\\b(eşittir|büyüktür|küçüktür|çarpı|kere|bölü|artı|eksi)\\b"
                 }
             ]
@@ -39,7 +39,7 @@
         "constants": {
             "patterns": [
                 {
-                    "name": "constant.numeric.tr.ch",
+                    "name": "constant.numeric.tr.child",
                     "match": "\\b((0|[1-9]).?([0-9])*)\\b"
                 }
             ]
@@ -47,20 +47,20 @@
         "variables": {
             "patterns": [
                 {
-                    "name": "markup.bold.tr.ch",
+                    "name": "markup.bold.tr.child",
                     "match": "\\b([A-Z_][A-Z0-9_]+)\\b"
                 }
             ]
         },
         "strings": {
-            "name": "string.tr.ch",
+            "name": "string.tr.child",
             "patterns": [
                 {
-                    "name": "string.word.tr.ch",
+                    "name": "string.word.tr.child",
                     "match": "\\b((-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+))\\b"
                 }
             ]
         }
     },
-    "scopeName": "source.tr.ch"
+    "scopeName": "source.tr.child"
 }

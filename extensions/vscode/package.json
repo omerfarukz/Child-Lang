@@ -2,9 +2,12 @@
   "name": "childlang",
   "displayName": "ChildLang",
   "description": "New programming language designed for children who can read and write.",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "publisher": "omerfarukz",
   "icon": "images/icon.png",
+  "repository": {
+    "url": "https://github.com/omerfarukz/Child-Lang"
+  },
   "engines": {
     "vscode": "^1.40.0"
   },
@@ -20,7 +23,7 @@
           "child-lang"
         ],
         "extensions": [
-          "ch"
+          "child"
         ],
         "configuration": "./language-configuration.json"
       },
@@ -31,7 +34,7 @@
           "child-lang-tr"
         ],
         "extensions": [
-          "tr.ch"
+          "tr.child"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -39,12 +42,12 @@
     "grammars": [
       {
         "language": "child-lang-tr",
-        "scopeName": "source.tr.ch",
+        "scopeName": "source.tr.child",
         "path": "./syntaxes/child-lang.tmLanguage.tr.json"
       },
       {
         "language": "child-lang",
-        "scopeName": "source.ch",
+        "scopeName": "source.child",
         "path": "./syntaxes/child-lang.tmLanguage.json"
       }
     ],
@@ -81,7 +84,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-lang": "copyfiles -V -a -u 2 ../../src/runtimes/javascript/src/*.ts ../../src/runtimes/javascript/src/grammar/*.ts ./runtime",
     "build-grammars": "cd ../../ && sh build.grammars.sh",
-    "build": "rm -rf out && npm run build-grammars && npm run copy-lang && tsc",
+    "build": "cleandir out && npm run build-grammars && npm run copy-lang && tsc",
     "pack": "vsce package"
   },
   "author": "",
@@ -99,6 +102,7 @@
     "@types/find-process": "^1.2.0",
     "antlr4": "^4.7.2",
     "antlr4ts": "^0.5.0-alpha.3",
+    "clean-dir": "^1.0.3",
     "find-process": "^1.4.3",
     "readline-sync": "^1.4.10"
   }
