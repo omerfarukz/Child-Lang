@@ -2,6 +2,14 @@
 # Child-Lang
 New programming language designed for children who can read and write. Child-Lang is a language for trainers who want to teach programming to children in their native language before modern languages.
 
+## How to install
+- Get Visual Studio Code
+- Install extension named `Child Lang`
+- Create a new file with extension `.child` and type `print hello world`
+- Press F6 to execute
+
+Note: Browser based version is under construction. Please support this project.
+
 ## Motivation
 Children who can read and write in their language can learn to code. Visual programming references like code.org supports coding without typing. So, after code.org experiments child will be ready for coding. But, there is no programming language designed for children to the very first experiment. They are able to write programs in their native language. For example, printing something to screen is "print Hello" in English and "yaz Merhaba" in Turkish etc. Considered non-alphanumeric characters, indention and other tokens are needed for lexing or parsing purposes.
 
