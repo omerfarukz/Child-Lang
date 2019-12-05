@@ -3,8 +3,8 @@
 New programming language designed for children who can read and write. Child-Lang is a language for trainers who want to teach programming to children in their native language before modern languages.
 
 ## How to install
-- Get Visual Studio Code
-- Install extension named `Child Lang`
+- Get [Visual Studio Code](https://code.visualstudio.com/download)
+- Install extension named [`Child Lang`](https://marketplace.visualstudio.com/items?itemName=omerfarukz.childlang)
 - Create a new file with extension `.child` and type `print hello world`
 - Press F6 to execute
 
